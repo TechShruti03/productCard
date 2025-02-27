@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Card</title>
+    <style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffcc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.product-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 300px;
+}
+
+.product-image {
+    width: 50%;
+    height: 200px;
+    border-radius: 10px;
+}
+
+.product-title {
+    font-size: 1em;
+    margin: 10px 0;
+    color: tomato;
+}
+
+.product-description {
+    color: #666;
+    margin: 10px 0;
+}
+
+.product-price {
+    font-size: 1.2em;
+    color: #333;
+    margin: 10px 0;
+}
+
+.quantity-control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.quantity-button {
+    background-color: #b4cde4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1em;
+}
+.quantity-button:hover{
+    background-color: #a1c0dd;
+}
+
+.quantity {
+    margin: 0 10px;
+    font-size: 1.5em;
+}
+
+.add-to-cart {
+    background-color: #46d246;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1.2em;
+} 
+.add-to-cart:hover{
+    background-color: #28A745;
+}  
+
+
+
+    </style>
+</head>
+<body>
+    <div class="product-card">
+        <img src="./img/book_img.jpg" alt="Biography Book" class="product-image">
+        <h2 class="product-title">LONG WALK TO FREEDOM<br>
+         by Nelson Mandela</h2>
+        <p class="product-description">Long Walk to Freedom brilliantly re-creates the drama of the experiences that helped shape Nelson Mandela's destiny</p>
+        <p class="product-price" id="total-price">₹ 450/-</p>
+        <div class="quantity-control">
+            <button id="decrement" class="quantity-button">-</button>
+            <span id="quantity" class="quantity">1</span>
+            <button id="increment" class="quantity-button">+</button>
+        </div>
+        <button class="add-to-cart" id="addToCart">Add to Cart</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const incrementButton = document.getElementById('increment');
+            const decrementButton = document.getElementById('decrement');
+            const quantityDisplay = document.getElementById('quantity');
+            const totalPriceDisplay = document.getElementById('total-price');
+            const addToCartButton = document.getElementById('addToCart');
+
+            const bookPrice = 450; 
+            let quantity = 1;
+
+            function updateTotalPrice() {
+                const totalPrice = bookPrice * quantity;
+                totalPriceDisplay.textContent = `₹ ${totalPrice}/-`; 
+            }
+
+            incrementButton.addEventListener('click', () => {
+                quantity++;
+                quantityDisplay.textContent = quantity; 
+                updateTotalPrice(); 
+            });
+
+            
+            decrementButton.addEventListener('click', () => {
+                if (quantity > 1) {
+                    quantity--;
+                    quantityDisplay.textContent = quantity; 
+                    updateTotalPrice(); 
+                }
+            });
+            addToCartButton.addEventListener('click', () => {
+                alert(`Added ${quantity} Book(s) to your cart successfully!`);
+            });
+        });
+    </script>
+</body>
+</html>
